@@ -1,14 +1,19 @@
 import mongoose from 'mongoose';
-import dotenv from 'dotenv';
+import dotenv from 'dotenv';  // Import dotenv
+dotenv.config();  // Load environment variables from .env file
 
-dotenv.config();
+const connectDB = async () => {
+  try {
+    await mongoose.connect(process.env.MONGODB_URI, {
+      useNewUrlParser: true,  // Enable new parser
+      useUnifiedTopology: true, // Enable unified topology
+      // Remove the useFindAndModify option
+    });
+    console.log('MongoDB Connected...');
+  } catch (err) {
+    console.error('MongoDB Connection Failed:', err);
+    process.exit(1); // Exit the process with a failure code
+  }
+};
 
-mongoose.set('strictQuery', false); // Set strict query parsing
-
-mongoose.connect(process.env.MONGO_URI, {
-  useFindAndModify: false,  // Use the newer `findOneAndUpdate` function
-})
-  .then(() => console.log('MongoDB Connected'))
-  .catch((err) => console.error('MongoDB Connection Failed:', err));
-
-export default mongoose;
+connectDB();
