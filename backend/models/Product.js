@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const productSchema = new mongoose.Schema({
   name: { type: String, required: true },
@@ -6,8 +6,8 @@ const productSchema = new mongoose.Schema({
   description: { type: String, required: true },
   description2: { type: String, required: true },
 
-  MRP:{type: Number, required: true},
-  MRP2:{type: Number, required: true},
+  MRP: { type: Number, required: true },
+  MRP2: { type: Number, required: true },
 
   prices: {
     oneMonth: { type: Number, required: true },
@@ -19,9 +19,8 @@ const productSchema = new mongoose.Schema({
   category: { type: String, required: true }, // Ensure category is included here
   outOfStock: { type: Boolean, default: false },
   showSelectOptions: { type: Boolean, required: true }, // Add this field
-
 });
 
 const Product = mongoose.model('Product', productSchema);
 
-module.exports = Product;
+export default Product;
