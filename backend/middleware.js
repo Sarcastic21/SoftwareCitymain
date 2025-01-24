@@ -1,4 +1,5 @@
-const jwt = require('jsonwebtoken');
+import jwt from 'jsonwebtoken';
+
 const SECRET_KEY = '9e5e456ec44a4226b43a37bf39dc61e7a1b684edc4535b4015f6a4e8722f9c08'; // Same as in server.js
 
 // Middleware to authenticate JWT token
@@ -15,5 +16,4 @@ const authenticateToken = (req, res, next) => {
     });
 };
 
-
-module.exports = authenticateToken;
+export default authenticateToken;
