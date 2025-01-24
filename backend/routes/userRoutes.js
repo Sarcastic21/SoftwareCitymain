@@ -1,11 +1,10 @@
-const express = require('express');
+import express from 'express';
+import Order from '../models/Order.js'; // Order model
+import User from '../models/User.js'; // User model
+import Cart from '../models/Cart.js'; // Cart model
+import Product from '../models/Product.js'; // Product model
+
 const router = express.Router();
-const Order = require('../models/Order'); // User model
-
-const User = require('../models/User'); // User model
-const Cart = require('../models/Cart'); // Cart model
-const Product = require('../models/Product'); // Ensure Product model is imported
-
 
 // POST: Add an order
 router.post('/add-order', async (req, res) => {
@@ -222,4 +221,4 @@ router.get('/products/:id', async (req, res) => {
 });
 
 
-module.exports = router;
+export default router;
