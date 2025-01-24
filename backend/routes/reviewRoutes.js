@@ -1,6 +1,6 @@
-// routes/reviewRoutes.js
-const express = require('express');
-const Review = require('../models/Review');
+import express from 'express';
+import Review from '../models/Review.js';
+
 const router = express.Router();
 
 // Submit a review for a product
@@ -41,4 +41,4 @@ router.get('/', async (req, res) => {
 
 
 
-module.exports = router;
+export default router;
