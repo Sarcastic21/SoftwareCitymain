@@ -1,15 +1,16 @@
-const express = require('express');
+import express from 'express';
+import Product from '../models/Product.js';
+import Review from '../models/Review.js'; // Ensure the Review model is properly imported
+
 const router = express.Router();
-const Product = require('../models/Product');
-const Review = require('../models/Review'); // Make sure you import the Review model
 
 // Add product
 router.post('/add-product', async (req, res) => {
     try {
         console.log("Request Body:", req.body); // Log the incoming request body
-        const { name, image, description,description2,MRP,MRP2, prices, category, showSelectOptions } = req.body;
+        const { name, image, description, description2, MRP, MRP2, prices, category, showSelectOptions } = req.body;
 
-        if (!name || !image || !description || !MRP || !MRP2 || !prices || !category || ! showSelectOptions) {
+        if (!name || !image || !description || !MRP || !MRP2 || !prices || !category || !showSelectOptions) {
             return res.status(400).json({ message: 'All fields are required' });
         }
 
@@ -20,7 +21,6 @@ router.post('/add-product', async (req, res) => {
             description2,
             MRP,
             MRP2,
-
             prices,
             category,
             showSelectOptions,
@@ -33,7 +33,6 @@ router.post('/add-product', async (req, res) => {
         res.status(500).json({ message: 'Failed to add product', error: error.message });
     }
 });
-
 
 // Delete product by name
 router.delete('/delete-product/:name', async (req, res) => {
@@ -79,25 +78,24 @@ router.get('/products/:id', async (req, res) => {
 });
 
 // Route to fetch products with optional filtering by 5-star reviews
-
-
 // Assuming we want to fetch top-rated products based on reviews with rating 5
 router.get('/top-rated-products', async (req, res) => {
     try {
-      // Fetch reviews with rating 5
-      const reviews = await Review.find({ rating: 5 }).populate('id'); // Use populate to fetch product details from the productId
-  
-      // Extract the product details from reviews
-      const topRatedProducts = reviews.map(review => review.id); // Get productId from review
-  
-      // Return the products that have received a 5-star rating
-      res.status(200).json(topRatedProducts);
+        // Fetch reviews with rating 5
+        const reviews = await Review.find({ rating: 5 }).populate('id'); // Use populate to fetch product details from the productId
+
+        // Extract the product details from reviews
+        const topRatedProducts = reviews.map(review => review.id); // Get productId from review
+
+        // Return the products that have received a 5-star rating
+        res.status(200).json(topRatedProducts);
     } catch (error) {
-      console.error('Error fetching top-rated products:', error); // Log the error for debugging
-      res.status(500).json({ message: 'Failed to fetch top-rated products', error: error.message });
+        console.error('Error fetching top-rated products:', error); // Log the error for debugging
+        res.status(500).json({ message: 'Failed to fetch top-rated products', error: error.message });
     }
-  });
-  // Route to mark a product as out of stock
+});
+
+// Route to mark a product as out of stock
 router.put('/update-product', async (req, res) => {
     try {
         const { name, outOfStock } = req.body;
@@ -122,6 +120,7 @@ router.put('/update-product', async (req, res) => {
         res.status(500).json({ message: 'Failed to update product', error: error.message });
     }
 });
+
 // adminRoutes.js (or similar)
 router.put('/update-outofstock', async (req, res) => {
     const { productName } = req.body;
@@ -149,9 +148,4 @@ router.put('/update-outofstock', async (req, res) => {
     }
 });
 
-
-
-
-  
-
-module.exports = router;
+export default router;
