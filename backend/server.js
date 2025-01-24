@@ -24,8 +24,8 @@ import './middleware.js'; // Adjust the path as necessary
 const app = express();
 
 const allowedOrigins = [
-  'https://premiumcity-9xrc.vercel.app/',
-  'http://localhost:3000',
+  'https://softwarecity.netlify.app',
+  'https://softwarecitymain1.onrender.com',
 ];
 
 app.use(
