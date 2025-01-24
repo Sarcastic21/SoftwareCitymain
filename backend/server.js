@@ -20,8 +20,8 @@ dotenv.config();
 const app = express();
 
 const allowedOrigins = [
-  'https://premiumcity-9xrc.vercel.app/',
-  'http://localhost:3000',
+  'https://softwarecity07.onrender.com',
+  'https://softwarecity.netlify.app',
 ];
 
 app.use(cors({
