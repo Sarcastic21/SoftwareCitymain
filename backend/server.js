@@ -8,29 +8,29 @@ import fs from 'fs'; // For managing files
 import QRCode from 'qrcode'; // For generating QR codes
 import dotenv from 'dotenv';
 import crypto from 'crypto';
+
+import './db.js';  // Include the file extension for ES modules
 import adminRoutes from './routes/adminRoutes.js';
 import userRoutes from './routes/userRoutes.js';
 import reviewRoutes from './routes/reviewRoutes.js';
 import './middleware.js'; // Adjust the path as necessary
 
-dotenv.config(); // Load environment variables from .env
-
-require('./db.js'); // Ensure MongoDB connection is initialized
+dotenv.config();
 
 const app = express();
 
 const allowedOrigins = [
-  'https://softwarecity2.netlify.app',
-  'https://softwarecity.netlify.app',
+  'https://premiumcity-9xrc.vercel.app/',
+  'http://localhost:3000',
 ];
 
 app.use(cors({
   origin: (origin, callback) => {
-    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
-      callback(null, origin);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
+      if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+          callback(null, origin);
+      } else {
+          callback(new Error('Not allowed by CORS'));
+      }
   },
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true,
@@ -91,9 +91,7 @@ app.get('/api/generate-qr', async (req, res) => {
     const payeeName = process.env.PAYEE_NAME;
 
     // Construct UPI URI
-    const qrData = `upi://pay?pa=${encodeURIComponent(upiId)}&pn=${encodeURIComponent(
-      payeeName
-    )}&am=${amount}&cu=INR&tr=${transactionRef}&tn=Payment to Ayush Maurya`;
+    const qrData = `upi://pay?pa=${encodeURIComponent(upiId)}&pn=${encodeURIComponent(payeeName)}&am=${amount}&cu=INR&tr=${transactionRef}&tn=Payment to Ayush Maurya`;
 
     // Generate QR Code
     const qrCode = await QRCode.toDataURL(qrData);
