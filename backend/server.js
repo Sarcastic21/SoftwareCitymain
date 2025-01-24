@@ -6,20 +6,16 @@ import multer from 'multer';
 import path from 'path';
 import fs from 'fs'; // For managing files
 import QRCode from 'qrcode'; // For generating QR codes
-import { config } from 'dotenv';
+import dotenv from 'dotenv';
 import crypto from 'crypto';
-
-// Initialize environment variables
-config();
-
-// Import routes
 import adminRoutes from './routes/adminRoutes.js';
 import userRoutes from './routes/userRoutes.js';
 import reviewRoutes from './routes/reviewRoutes.js';
-
-// Import middleware and DB connection
-import './db.js'; // Ensure MongoDB connection is initialized
 import './middleware.js'; // Adjust the path as necessary
+
+dotenv.config(); // Load environment variables from .env
+
+require('./db.js'); // Ensure MongoDB connection is initialized
 
 const app = express();
 
@@ -29,19 +25,17 @@ const allowedOrigins = [
   'https://softwarecity2.netlify.app',
 ];
 
-app.use(
-  cors({
-    origin: (origin, callback) => {
-      if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
-        callback(null, origin);
-      } else {
-        callback(new Error('Not allowed by CORS'));
-      }
-    },
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    credentials: true,
-  })
-);
+app.use(cors({
+  origin: (origin, callback) => {
+    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+      callback(null, origin);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true,
+}));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -51,7 +45,7 @@ app.use('/api/admin', adminRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/reviews', reviewRoutes);
 
-const upload = multer({ dest: 'uploads/' }); // Configure multer for file uploads
+const upload = multer({ dest: 'uploads/' });
 
 // Configure Nodemailer transporter
 const transporter = nodemailer.createTransport({
@@ -62,9 +56,9 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-// Admin login configuration using environment variables
+// Admin login route with JWT
 const ADMIN_USERNAME = process.env.ADMIN_USERNAME;
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD; 
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
 
 app.post('/api/loginadmin', (req, res) => {
   const { username, password } = req.body;
@@ -77,7 +71,6 @@ app.post('/api/loginadmin', (req, res) => {
     res.status(401).json({ auth: false, message: 'Invalid credentials' });
   }
 });
-
 
 // Temporary in-memory storage for active QR codes
 const activeQRCodes = {};
@@ -95,8 +88,8 @@ app.get('/api/generate-qr', async (req, res) => {
     const transactionRef = `${timestamp}-${crypto.randomBytes(8).toString('hex')}`;
 
     // Fixed UPI details
-    const upiId =process.env.UPI_ID;
-    const payeeName =process.env.PAYEE_NAME;
+    const upiId = process.env.UPI_ID;
+    const payeeName = process.env.PAYEE_NAME;
 
     // Construct UPI URI
     const qrData = `upi://pay?pa=${encodeURIComponent(upiId)}&pn=${encodeURIComponent(
@@ -121,10 +114,9 @@ app.get('/api/generate-qr', async (req, res) => {
   }
 });
 
-
 // Email sending route
 app.post('/api/send-email', upload.single('screenshot'), async (req, res) => {
-  const { email, products, utr, mobile, name,description } = req.body; // Extract additional fields
+  const { email, products, utr, mobile, name, description } = req.body; // Extract additional fields
   const screenshotPath = req.file?.path;
 
   // Validate required fields
@@ -168,8 +160,6 @@ app.post('/api/send-email', upload.single('screenshot'), async (req, res) => {
     res.status(500).send('Failed to send email.');
   }
 });
-
-
 
 app.post('/api/validate-qr', (req, res) => {
   const { transactionRef } = req.body;
