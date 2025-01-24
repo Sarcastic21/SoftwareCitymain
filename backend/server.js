@@ -22,6 +22,7 @@ const app = express();
 const allowedOrigins = [
   'https://softwarecity07.onrender.com',
   'https://software-citymain.vercel.app',
+  'https://softwarecityofficial-a6hp.vercel.app',
 
 ];
 
