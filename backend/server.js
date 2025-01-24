@@ -26,6 +26,7 @@ const app = express();
 const allowedOrigins = [
   'https://softwarecity.netlify.app',
   'https://softwarecitymain1.onrender.com',
+  'https://softwarecity2.netlify.app',
 ];
 
 app.use(
