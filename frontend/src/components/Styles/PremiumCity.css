@@ -1,0 +1,938 @@
+/* Basic styling for the navbar */
+.navbar {
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  background-color: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for a premium look */
+  position: sticky;
+  top: 0;
+  z-index: 10;  
+  animation: slideInLeft 1.5s ease-out;
+
+} 
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeInPage {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInTop {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInBottom {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInScale {
+  from {
+    transform: scale(0.85);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+  
+  /* Logo styling */
+  .logo-image {
+    width: 18vw;
+    height: 10vh;
+  }
+  
+  /* Search bar container */
+  .search-container {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+  }
+  
+  /* Search bar styling */
+  .search-bar {
+    width: 80%;
+    max-width: 400px;
+    padding: 0.6rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    outline: none;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+  }
+  
+  /* Search bar hover/focus effect */
+  .search-bar:focus {
+    border-color: #222; /* Darker border color on focus */
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Navbar buttons container */
+  .navbar-buttons {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  /* Button styling for Account and Cart */
+  .navbar-button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border: none;
+    
+    color: white;
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  /* Icon styling inside buttons */
+  .icon {
+    font-size: 1.2rem;
+  }
+  
+  /* Hover effect for navbar buttons */
+  .navbar-button:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transform: scale(1.05); /* Slight scaling effect */
+  }
+  /* Navbar button container */
+.navbar-buttons {
+  display: flex;
+  gap: 20px;
+}
+
+/* Button styling */
+.navbar-button {
+  display: flex;
+ 
+  background: none;
+  border: none;
+  color: grey; /* Default text color */
+  font-size: 14px;
+  cursor: pointer;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.navbar-button .icon {
+  font-size: 24px; /* Adjust icon size */
+  margin-bottom: 5px; /* Space between icon and text */
+  color: grey; /* Default icon color */
+  transition: color 0.3s ease;
+}
+
+/* Hover effect */
+.navbar-button:hover {
+  color: rgb(140, 8, 217); /* Text color on hover */
+  transform: scale(1.1); /* Slight zoom on hover for effect */
+}
+
+.navbar-button:hover .icon {
+  color: rgb(140, 8, 217); /* Icon color on hover */
+}
+
+/* Optional: to make it look more premium, you can add spacing and padding */
+.navbar-button {
+  padding: 8px 12px;
+  border-radius: 8px;
+}
+/* Base Navbar Style */
+.premium-navbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(140, 8, 217);
+  padding: 2px;
+  font-family: 'Arial', sans-serif;
+  color: white;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  animation: slideInBottom 1s ease-out;
+
+}
+
+/* Navbar Item Style */
+.navbar-item {
+  position: relative;
+ 
+  margin: 0 20px; /* Margin for spacing on the left and right */
+  font-size: 18px;
+  color: white;
+  cursor: pointer;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.navbar-item:hover {
+  color: #ddd; /* Light gray hover color */
+  transform: scale(1.05); /* Slightly enlarge on hover */
+  text-decoration: underline; /* Add underline on hover */
+}
+
+/* Logo */
+.logo {
+  font-size: 24px;
+  
+}
+
+/* Dropdown Container */
+.dropdown {
+  display: inline-block;
+  cursor: pointer;
+}
+
+/* Dropdown Content */
+.dropdown-content {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: white;
+  color: rgb(140, 8, 217);
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  min-width: 160px;
+}
+
+/* Dropdown Button Style */
+.dropdown-button {
+  background: none;
+  border: none;
+  padding: 8px 15px;
+  text-align: left;
+  font-size: 16px;
+  color: rgb(140, 8, 217);
+  cursor: pointer;
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.dropdown-button:hover {
+  color: white;
+  background-color: rgb(140, 8, 217);
+  border-radius: 5px;
+}
+.whatsapp-community {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #d8c7f1;
+  color: rgb(146, 146, 146);
+  padding: 10px;
+  height: 10px;
+  border-radius: 5px;
+  font-family: Arial, sans-serif;
+}
+
+.whatsapp-icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 8px;
+}
+
+.whatsapp-community h6 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: normal;
+}
+
+.whatsapp-link {
+  margin-left: 8px;
+  color: #3d3a3a;
+  text-decoration: underline;
+  font-size: 14px;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.whatsapp-link:hover {
+  color: #e0ffe6;
+}
+.banner{
+  width: 100%;
+  height: auto;
+  animation: slideInRight 1s ease-out;
+
+}
+/* Centering the div on the page */
+.centered-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 3vh;
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+/* Styling for 'Most' */
+.highlight {
+  color: rgb(140, 8, 217);
+  font-weight: bold;
+}
+
+/* Curvy sketch line styling */
+.sketch-line {
+  width: 200px;
+  height: 20px;
+  background: none;
+  border-bottom: 2px solid rgb(140, 8, 217);
+  border-radius: 50%;
+  position: relative;
+  animation: drawLine 2s ease-in-out infinite;
+}
+
+/* Keyframes to animate the sketch line */
+@keyframes drawLine {
+  0%, 100% {
+    width: 0;
+  }
+  50% {
+    width: 150px;
+  }
+}
+
+
+/* Container for service cards */
+.service-container {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  padding: 2rem;
+}
+
+/* Individual service card styling */
+.service-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 200px;
+  transition: transform 0.3s ease;
+}
+
+.service-card:hover {
+  transform: scale(1.05);
+}
+
+/* Service image styling with reduced opacity */
+.service-image {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  transition: opacity 0.3s ease;
+}
+
+.service-card:hover .service-image {
+  opacity: 0.8;
+}
+
+/* Service title styling */
+.service-card h2 {
+  font-size: 1.25rem;
+  margin-top: 0.5rem;
+  font-weight: bold;
+  color: rgb(50, 50, 50); /* A soft, dark color for premium feel */
+}
+
+/* Button styling */
+.service-button {
+  margin-top: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  color: white;
+  background-color: rgb(140, 8, 217);
+  border: 2px solid transparent;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+/* Hover effect for button */
+.service-button:hover {
+  border-color: rgb(140, 8, 217);
+  background-color: transparent;
+  color: rgb(140, 8, 217);
+}
+.service-image:hover{
+  border: 5px solid rgb(162, 0, 255);
+}
+.WHY{
+  margin-left: 5vw;
+  margin-right: 5vw;
+  font-family:cursive;
+}
+/* Overall promise section styling */
+.promise-section {
+  margin-left: 10vw;
+  margin-right: 10vw;
+  padding: 40px;
+  background-color: #f8f8f8;
+  font-family: Arial, sans-serif;
+}
+
+/* Main content layout */
+.promise-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 40px;
+}
+
+.promise-text h2 {
+  font-size: 36px;
+  color: rgb(140, 8, 217);
+}
+
+.promise-text h2 .highlight {
+  color: rgb(140, 8, 217);
+}
+
+.promise-text p {
+  font-size: 16px;
+  color: #555;
+  margin: 10px 0;
+}
+
+/* Promise image styling */
+.promise-image img {
+  max-width: 400px;
+  width: 100%;
+  border-radius: 8px;
+  animation: fadeIn 1.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Features section styling */
+.features-section {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+.feature-card {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+  flex: 1;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.feature-icon {
+  font-size: 48px;
+  color: rgb(140, 8, 217);
+  margin-bottom: 10px;
+}
+
+.feature-card h3 {
+  font-size: 20px;
+  color: rgb(140, 8, 217);
+  margin: 10px 0;
+}
+
+.feature-card p {
+  font-size: 14px;
+  color: #666;
+  margin: 0;
+}
+/* Overall OTT section styling */
+.ott-section {
+  width: 95vw;
+  display: flex;
+  align-items: center;
+  background-color: #f8f8f8;
+  font-family: Arial, sans-serif;
+}
+
+/* Layout of content inside OTT section */
+.ott-content {
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+/* Image layout styling */
+.ott-images {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+}
+
+.tablet-image {
+  width: 30vw;
+  position: relative;
+  z-index: 2;
+  margin-right: -20px;
+}
+
+.phone-image {
+  max-width: 100px;
+  z-index: 1;
+}
+
+/* Text styling */
+.ott-text {
+  max-width: 600px;
+}
+
+.ott-text h3 {
+  font-size: 14px;
+  color: #d9534f;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.ott-text h2 {
+  font-size: 32px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.ott-text h2 .highlight {
+  color: rgb(140, 8, 217); /* Color for "Wide" */
+  font-weight: bold;
+}
+
+.ott-text p {
+  font-size: 16px;
+  color: #555;
+  line-height: 1.6;
+}
+
+.ott-text a {
+  color: rgb(140, 8, 217);
+  text-decoration: none;
+}
+
+.ott-text a:hover {
+  text-decoration: underline;
+}
+/* Carousel container styling */
+.carousel-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px;
+  border-radius: 10px;
+  max-width: 600px;
+  margin: auto;
+  font-family: Arial, sans-serif;
+}
+
+/* Title styling */
+.carousel-title {
+  font-size: 24px;
+  color: #d9534f;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.carousel-title .highlight {
+  color: #8c08d9; /* Replace with your theme color */
+  font-weight: bold;
+}
+
+/* Carousel card styling */
+.carousel-card {
+  background: rgb(170, 47, 242);
+  padding: 20px;
+  border-radius: 15px;
+  color: #fff;
+  text-align: center;
+  width: 60vw;
+  transition: transform 0.5s ease-in-out;
+}
+
+/* Reviewer image styling */
+.reviewer-image {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+/* Reviewer name styling */
+.carousel-card h4 {
+  font-size: 18px;
+  margin: 10px 0;
+  color: #fff;
+}
+
+/* Review text styling */
+.review-text {
+  font-size: 16px;
+  margin: 15px 0;
+  color: #fff;
+  line-height: 1.5;
+}
+
+/* Star rating styling */
+.rating {
+  color: #ffd700;
+  font-size: 20px;
+}
+
+/* Customer label styling */
+.customer-label {
+  font-size: 14px;
+  color: #ffce54;
+}
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  padding: 40px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  font-family: Arial, sans-serif;
+}
+
+.feature {
+  text-align: center;
+  padding: 20px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.feature h3 {
+  color: #8c08d9; /* Replace with theme color */
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.feature p {
+  color: #555;
+  font-size: 14px;
+}
+
+.secure-checkout .icons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.icon {
+  font-size: 24px;
+  color: #ccc;
+  transition: color 0.3s;
+}
+
+.icon:hover {
+  color: #8c08d9; /* Replace with hover color */
+}
+
+.review{
+  height: 40vh;
+}
+/* Container for all products */
+.product {
+
+  display: flex;
+  flex-wrap: wrap; /* Wrap rows */
+  gap: 5px; /* Space between cards */
+  background-color: white; /* White background */
+}
+
+/* Individual product card */
+
+
+
+
+/* Product image */
+
+
+/* Product name */
+
+
+/* Price text */
+
+
+/* Actions container */
+
+
+/* Buttons styling */
+
+
+
+.products-container91{
+display:flex;
+margin-left: 4vw;
+margin-right: 10vw;
+}
+.dropdown-button-load {
+  display: inline-block;
+  padding: 12px 30px; /* Adjust padding for button size */
+  font-size: 1rem;
+  font-weight: bold;
+  color: #a202ff; /* White text color */
+  background-color: transparent; /* Transparent background */
+  border: 2px solid #8c08d9; /* Border color matching your brand color */
+  border-radius: 8px; /* Rounded corners */
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease; /* Smooth transition on hover */
+  margin: 20px auto; /* Center the button */
+  display: block;
+}
+
+/* Hover effect */
+.dropdown-button-load:hover {
+  background-color: #8c08d9; /* Premium purple background on hover */
+  color: white; /* White text when hovered */
+  border-color: #8c08d9; /* Keep border same as background */
+  box-shadow: 0 4px 8px rgba(140, 8, 217, 0.4); /* Shadow effect on hover */
+  transform: translateY(-3px); /* Slightly lift the button */
+}
+
+/* Focus effect (optional) */
+.dropdown-button-load:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(140, 8, 217, 0.3); /* Highlight focus with a shadow */
+}
+
+/* Navbar Container */
+.premium-navbar {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #8c08d9;
+  color: white;
+  position: sticky;
+  top: 95px;
+  z-index: 7;
+ }
+
+/* Logo */
+.navbar-item.logo {
+  font-size: 1.5em;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Desktop Navigation */
+.desktop-nav {
+  display: flex;
+}
+
+.desktop-nav .navbar-item {
+  cursor: pointer;
+  padding: 5px 10px;
+}
+
+/* Dropdowns */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 100%;
+  background-color: white;
+  color: #333;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  z-index: 10;
+  padding: 10px 0;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown-button {
+  padding: 5px 10px;
+  text-align: left;
+  width: 100%;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.dropdown-button:hover {
+  background-color: #f0f0f0;
+}
+
+/* Hamburger Icon */
+.hamburger-icon {
+  font-size: 1.5em;
+  cursor: pointer;
+}
+
+/* Mobile Sliding Menu */
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background-color: #fcfcfc;
+  color: rgb(103, 103, 103);
+  padding: 20px;
+  z-index: 100;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+  transform: translateX(0);
+  animation: slide-in 0.3s ease-out;
+  
+  /* Enable scrolling */
+  overflow-y: auto;
+}
+
+.mobile-menu-item {
+  padding: 10px 0;
+  cursor: pointer;
+  font-weight: bolder;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.mobile-menu-item:hover {
+  background-color: #be2ff1;
+}
+
+.close-menu {
+  background: none;
+  border: none;
+  font-size: 1.5em;
+  color: rgb(55, 55, 55);
+  cursor: pointer;
+  margin-bottom: 20px;
+  margin-left: 40vw;
+}
+
+
+/* Animations */
+@keyframes slide-in {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@media (min-width: 768px) {
+  .search-bar2{
+    display: none;
+  }
+
+  .hamburger-icon {
+    display: none;
+  }
+}
+/* Media Queries */
+@media (max-width: 768px) {
+  .search-bar2{
+    margin-top: 2vh;
+    width: 90%;
+    max-width: 400px;
+    padding: 0.6rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    outline: none;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+ 
+  .desktop-nav {
+    display: none;
+  }
+ 
+  
+  .mobile{
+    margin-left: 15vw;
+    display: flex;
+  }
+ 
+  .acc{
+    display: none;
+  }
+  .logo-image {
+    width: 61vw;
+    height: 8vh;
+}
+.acc2{
+  display: block;
+}
+.acc3{
+  display: block;
+ width: 83vw;
+}
+.premium-navbar{
+  margin-left: -39vw;
+}
+
+}
+@media (min-width: 768px) {
+  .acc4{
+    display: none;
+  }
+}
+
+
