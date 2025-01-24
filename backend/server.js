@@ -20,9 +20,8 @@ require('./db.js'); // Ensure MongoDB connection is initialized
 const app = express();
 
 const allowedOrigins = [
-  'https://softwarecity.netlify.app',
-  'https://softwarecitymain1.onrender.com',
   'https://softwarecity2.netlify.app',
+  'https://softwarecity.netlify.app',
 ];
 
 app.use(cors({
