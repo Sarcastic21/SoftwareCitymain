@@ -22,6 +22,7 @@ const app = express();
 const allowedOrigins = [
   'https://softwarecity07.onrender.com',
   'https://softwarecity.netlify.app',
+  'https://softwarecity2.netlify.app',
 ];
 
 app.use(cors({
