@@ -1,0 +1,36 @@
+# Node.js
+node_modules/
+.env
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Logs
+logs/
+*.log
+*.log.*
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Build artifacts
+dist/
+build/
+
+# OS-specific
+Thumbs.db
+.DS_Store
+
+# Temporary files
+.tmp/
+temp/
+*.swp
+*.swo
+
+# Editor-specific
+.idea/
+*.iml
+.vscode/
+*.bak
+*.lock
