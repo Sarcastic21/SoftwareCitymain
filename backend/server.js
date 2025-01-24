@@ -1,63 +1,67 @@
-const express = require('express');
-const cors = require('cors');
-const bodyParser = require('body-parser');
-const nodemailer = require('nodemailer');
-const multer = require('multer');
-const path = require('path');
-const fs = require('fs'); // For managing files
-const QRCode = require('qrcode'); // For generating QR codes
-require('dotenv').config();
+import express from 'express';
+import cors from 'cors';
+import bodyParser from 'body-parser';
+import nodemailer from 'nodemailer';
+import multer from 'multer';
+import path from 'path';
+import fs from 'fs'; // For managing files
+import QRCode from 'qrcode'; // For generating QR codes
+import { config } from 'dotenv';
+import crypto from 'crypto';
 
-require('./db'); // Ensure MongoDB connection is initialized
-const crypto = require('crypto');
+// Initialize environment variables
+config();
 
-const adminRoutes = require('./routes/adminRoutes');
-const userRoutes = require('./routes/userRoutes');
-const reviewRoutes = require('./routes/reviewRoutes');
-require('./middleware'); // Adjust the path as necessary
+// Import routes
+import adminRoutes from './routes/adminRoutes.js';
+import userRoutes from './routes/userRoutes.js';
+import reviewRoutes from './routes/reviewRoutes.js';
+
+// Import middleware and DB connection
+import './db.js'; // Ensure MongoDB connection is initialized
+import './middleware.js'; // Adjust the path as necessary
 
 const app = express();
 
 const allowedOrigins = [
   'https://premiumcity-9xrc.vercel.app/',
-  'https://softwarecitymain1.onrender.com',
-
+  'http://localhost:3000',
 ];
-app.use(cors({
-  origin: (origin, callback) => {
+
+app.use(
+  cors({
+    origin: (origin, callback) => {
       if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
-          callback(null, origin);
+        callback(null, origin);
       } else {
-          callback(new Error('Not allowed by CORS'));
+        callback(new Error('Not allowed by CORS'));
       }
-  },
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  credentials: true,
-}));
+    },
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true,
+  })
+);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json()); // To parse incoming JSON requests
 
-
 app.use('/api/admin', adminRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/reviews', reviewRoutes);
 
-
-
-const upload = multer({ dest: 'uploads/' }); 
+const upload = multer({ dest: 'uploads/' }); // Configure multer for file uploads
 
 // Configure Nodemailer transporter
 const transporter = nodemailer.createTransport({
   service: 'Gmail',
   auth: {
     user: process.env.EMAIL_USER, // Use the variable from .env
-    pass: process.env.EMAIL_PASS,// Use an app-specific password
+    pass: process.env.EMAIL_PASS, // Use an app-specific password
   },
 });
 
-// Admin login route with JWT
+// Admin login configuration using environment variables
 const ADMIN_USERNAME = process.env.ADMIN_USERNAME;
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD; 
 
