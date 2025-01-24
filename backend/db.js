@@ -1,10 +1,14 @@
-const mongoose = require('mongoose');
-require('dotenv').config(); 
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+
+dotenv.config();
+
+mongoose.set('strictQuery', false); // Set strict query parsing
+
 mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})  
-.then(() => console.log('MongoDB Connected'))
+  useFindAndModify: false,  // Use the newer `findOneAndUpdate` function
+})
+  .then(() => console.log('MongoDB Connected'))
   .catch((err) => console.error('MongoDB Connection Failed:', err));
 
-module.exports = mongoose;
+export default mongoose;
