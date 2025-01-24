@@ -21,6 +21,7 @@ const app = express();
 
 const allowedOrigins = [
   'https://softwarecity07.onrender.com',
+  'https://software-citymain.vercel.app',
 
 ];
 
